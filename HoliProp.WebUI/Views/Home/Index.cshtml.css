@@ -1,0 +1,9 @@
+﻿.page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.text-decoration-none {
+    text-decoration: none !important;
+}

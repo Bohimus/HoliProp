@@ -1,0 +1,21 @@
+﻿.book-form {
+    margin: 5px;
+    border: solid;
+    border-radius: 6px;
+    border-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-form-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.book-form-item-item {
+    margin: 5px;
+}

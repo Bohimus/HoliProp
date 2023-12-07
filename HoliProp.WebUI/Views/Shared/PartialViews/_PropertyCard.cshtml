@@ -1,0 +1,23 @@
+﻿@using HoliProp.Data.Entities;
+
+@model Property
+
+<div class="property-card">
+    <div class="property-card-item">
+        <div class="property-card-image">
+            <img src="@Model.ImageAddresses[0].Address">
+        </div>
+    </div>
+
+    <div class="property-card-item">
+        <h5>@Model.Id @Model.Name</h5>
+
+        <div>@Model.Blurb</div>
+
+        <div>
+            <div>Location: @Model.Location</div>
+            <div>Bedrooms: @Model.Bedrooms</div>
+            <div>Night: $@Model.CostPerNight</div>
+        </div>
+    </div>
+</div>

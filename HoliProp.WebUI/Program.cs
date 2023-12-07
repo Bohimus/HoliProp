@@ -1,7 +1,23 @@
+using HoliProp.Data.Contexts;
+using HoliProp.Data.Initializers;
+using HoliProp.Logic.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton(a =>
+{
+    var context = new AppDbContext();
+
+    var initializer = new AppDbContextInitializer(context);
+    initializer.Init();
+
+    return context;
+});
+
+builder.Services.AddScoped<IPropertyService, PropertyService>();
 
 var app = builder.Build();
 

@@ -1,0 +1,41 @@
+﻿@using HoliProp.Data.Entities;
+
+@model BookingSearchViewModel
+
+@{
+    ViewData["Title"] = "Booking Search";
+}
+
+<div class="page-header">
+    <h1>Booking Search</h1>
+</div>
+
+<div class="page-content">
+    <form method="post">
+        <div class="book-form">
+            <div class="book-form-item">
+                <div class="book-form-item-item">From</div>
+                <input class="book-form-item-item" type="datetime" name="from" value="@(Model.From?.Day).@(Model.From?.Month).@(Model.From?.Year)" />
+            </div>
+            <div class="book-form-item">
+                <div class="book-form-item-item">To</div>
+                <input class="book-form-item-item" type="datetime" name="to" value="@(Model.To?.Day).@(Model.To?.Month).@(Model.To?.Year)" />
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    @foreach (var property in Model.Properties)
+    {
+        <a asp-controller="Properties"
+           asp-action="Details"
+           asp-route-id="@property.Id"
+           asp-route-from="@Model.From"
+           asp-route-to="@Model.To"
+           asp-route-returnUrl="@Context.Request.Path"
+           class="nav-link text-decoration-none"
+        >
+            @(await Html.PartialAsync(partialViewName: "~/Views/Shared/PartialViews/_PropertyCard.cshtml", model: property))
+        </a>
+    }
+</div>

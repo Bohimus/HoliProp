@@ -3,22 +3,22 @@
 @model IEnumerable<Property>
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "All Properties";
 }
 
 <div class="page-header">
-    <h1>Top Holiday Properties</h1>
+    <h1>List of All Holiday Properties</h1>
 </div>
 
 <div class="page-content">
     @foreach (var property in Model)
     {
         <a 
-            asp-controller="Properties"
-            asp-action="Details"
-            asp-route-id="@property.Id"
-            asp-route-returnUrl="@Context.Request.Path"
-            class="nav-link text-decoration-none"
+           asp-controller="Properties"
+           asp-action="Details"
+           asp-route-id="@property.Id"
+           asp-route-returnUrl="@Context.Request.Path"
+           class="nav-link text-decoration-none"
         >
             @(await Html.PartialAsync(partialViewName: "~/Views/Shared/PartialViews/_PropertyCard.cshtml", model: property))
         </a>

@@ -1,0 +1,67 @@
+﻿@using HoliProp.Data.Entities;
+
+@model PropertyDetailsViewModel
+
+@{
+    ViewData["Title"] = "Property Details";
+}
+
+<div class="page-header">
+    <h1>Property Details</h1>
+</div>
+
+<div class="page-content">
+    <div class="property">
+        <div class="property-item">
+            <div class="property-image">
+                <img src="@Model?.Property?.ImageAddresses[0].Address">
+            </div>
+        </div>
+
+        <div class="property-item">
+            <h5>@Model?.Property?.Id @Model?.Property?.Name</h5>
+
+            <div>@Model?.Property?.Description</div>
+
+            <br />
+
+            <div>
+                <div>Location: @Model?.Property?.Location</div>
+                <div>Bedrooms: @Model?.Property?.Bedrooms</div>
+                <div>Night: $@Model?.Property?.CostPerNight</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button">
+        <a href="@Model?.ReturnUrl"><button type="button" class="btn btn-primary back-button">Back</button></a>
+    </div>
+    
+    <form method="post">
+        <div class="book-form">
+            <div class="book-form-item">
+                <div class="book-form-item-item">From</div>
+                <input class="book-form-item-item" type="datetime" name="from" value="@(Model.From?.Day).@(Model.From?.Month).@(Model.From?.Year)" />
+            </div>
+            <div class="book-form-item">
+                <div class ="book-form-item-item">To</div>
+                <input class="book-form-item-item" type="datetime" name="to" value="@(Model.To?.Day).@(Model.To?.Month).@(Model.To?.Year)" />
+            </div>
+            <button type="submit" class="btn btn-primary">Book</button>
+        </div>
+    </form>
+
+    <div>
+        @if (Model.Property is not null)
+        {     
+            @foreach (var booking in Model.Property.Bookings.OrderBy(b => b.Date))
+            {
+                <div class="booking">
+                    <div>
+                        @(booking.Date.Day).@(booking.Date.Month).@(booking.Date.Year)
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
